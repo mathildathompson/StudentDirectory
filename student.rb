@@ -8,8 +8,9 @@ class People
   attr_accessor :twitter
   attr_accessor :fun_fact
 
-def self.questions
-  person = People.new
+def self.questions (type)
+  if type == "student"
+  person = Student.new
   print "What is your name? "
   person.name = gets.strip.chomp
 
@@ -25,7 +26,18 @@ def self.questions
   print "What is your fun_fact?"
   person.fun_fact = gets.strip.chomp
 
+  print "What is your age?"
+  person.age = gets.strip.chomp
+
+  print "What is your eyecolour"
+  person.eyecolour = gets.strip.chomp
+
+elsif type == "instructor"
+  person = 
+else
+
  return person 
+
 end
 
 end
@@ -34,6 +46,11 @@ class Student < People
   attr_accessor :reason_for_joining
   attr_accessor :age
   attr_accessor :eyecolour
+
+  def self.questions
+  student = People.new
+  print "What is your name? "
+  person.name = gets.strip.chomp
 
 end
 
