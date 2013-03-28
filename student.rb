@@ -1,92 +1,83 @@
 require 'rubygems'
 require 'yaml'
 
-class People
+class Person
   attr_accessor :name
   attr_accessor :email
   attr_accessor :github_user
   attr_accessor :twitter
   attr_accessor :fun_fact
 
-def self.questions (type)
-  if type == "student"
-  person = Student.new
-  print "What is your name? "
-  person.name = gets.strip.chomp
+  def initialize
+     self.get_person_info
+  end
 
-  print "What is your email?"
-  person.email = gets.strip.chomp
+  def self.create_person(type)
+    case type
+    when "Student"
+      Student.new
+    when "Instructor"
+      Instructor.new
+    else
+       nil
+    end
+  end
 
-  print "What is your github_user?"
-  person.github_user = gets.strip.chomp
+  def get_person_info
+    print "What is your name? "
+    self.name = gets.strip.chomp
 
-  print "What is your twitter?"
-  person.twitter = gets.strip.chomp
+    print "What is your email?"
+    self.email = gets.strip.chomp
 
-  print "What is your fun_fact?"
-  person.fun_fact = gets.strip.chomp
+    print "What is your github_user?"
+    self.github_user = gets.strip.chomp
 
-  print "What is your age?"
-  person.age = gets.strip.chomp
+    print "What is your twitter?"
+    self.twitter = gets.strip.chomp
 
-  print "What is your eyecolour"
-  person.eyecolour = gets.strip.chomp
+    print "What is your fun_fact?"
+    self.fun_fact = gets.strip.chomp
+  end
+end 
 
-elsif type == "instructor"
-  person = 
-else
-
- return person 
-
-end
-
-end
-
-class Student < People
-  attr_accessor :reason_for_joining
+class Student < Person
   attr_accessor :age
   attr_accessor :eyecolour
 
-  def self.questions
-  student = People.new
-  print "What is your name? "
-  person.name = gets.strip.chomp
+  def get_person_info
+    super
+    print "What is your age?"
+    self.age = gets.strip.chomp
 
+    print "What is your eyecolour"
+    self.eyecolour = gets.strip.chomp
+  end
 end
+   
+class Instructor < Person
+  attr_accessor :instructor_type
 
-class Instructor < People
-  attr_accessor :type
+  def get_person_info
+    super
+    print "What type of instructor are you?"
+    self.instructor = gets.strip.chomp
+  end
 end
 
 @directory = ""
-puts "Student Directory, v0.0.1 by Dan Garland"
+puts "Student Directory, v0.0.2 by Dan Garland & Mathilda"
 print "Enter Student or Instructor, q to save and quit: "
 
 
 
 while ((input = gets.strip.chomp) != 'q') do
+  someone = Person.create_person(input)
 
-  person = People.questions
-  case input
-  when 'Student' 
-    # person = Student.new
-    # print "What is your name? "
-    # person.name = gets.strip.chomp
-    # print "What is your email? "
-    # person.email = gets.strip.chomp 
-    
-  when 'Instructor'
-    # person = Instructor.new
-    # print "What is your name? "
-    # person.name = gets.strip.chomp
-    # print "What is your email? "
-    # person.email = gets.strip.chomp
-    # print "What sort of instructor are you? "
-    # person.type = gets.strip.chomp
-  end
+  
   
   # Append this to our yaml file
-  @directory += person.to_yaml
+  @directory += someone.to_yaml
   puts @directory
   
   print "Enter Student or Instructor, q to save and quit: "

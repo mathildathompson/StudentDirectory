@@ -4,3 +4,11 @@ email: mathi
 github_user: f
 twitter: f
 fun_fact: f
+--- !ruby/object:Student
+name: g
+email: g
+github_user: g
+twitter: g
+fun_fact: g
+age: g
+eyecolour: g
