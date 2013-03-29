@@ -12,3 +12,21 @@ twitter: g
 fun_fact: g
 age: g
 eyecolour: g
+--- !ruby/object:Student
+name: f
+email: f
+github_user: f
+twitter: f
+fun_fact: f
+age: f
+eyecolour: f
+--- 
+...
+--- 
+...
+--- 
+...
+--- 
+...
+--- 
+...
